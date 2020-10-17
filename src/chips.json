@@ -1,0 +1,23 @@
+[
+	{
+		"name": "SN74LS08",
+		"alias": "AND",
+		"description": "Quadruple 2-input positive-AND gates",
+		"pins": [
+			{ "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "Y2" },
+      { "name": "⏚" },
+      { "name": "Y3" },
+      { "name": "A3" },
+      { "name": "B3" },
+      { "name": "Y4" },
+      { "name": "A4" },
+      { "name": "B4" },
+      { "name": "Vcc" }
+		]
+	}
+]
