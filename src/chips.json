@@ -517,6 +517,54 @@
     }
   },
   {
+    "name": "SN74LS173",
+    "alias": "D REGISTER",
+    "description": "4-bit D-type register",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ls173a.pdf",
+    "pins": [
+      {
+        "name": "M/OE1",
+        "negate": true,
+        "description": "Output enabled when low"
+      },
+      {
+        "name": "N/OE2",
+        "negate": true,
+        "description": "Output enabled when low"
+      },
+      { "name": "Q1", "description": "Output 1" },
+      { "name": "Q2", "description": "Output 2" },
+      { "name": "Q3", "description": "Output 3" },
+      { "name": "Q4", "description": "Output 4" },
+      { "name": "CLK" },
+      { "name": "⏚" },
+      { "name": "G1", "negate": true, "description": "Input enabled when low" },
+      { "name": "G2", "negate": true, "description": "Input enabled when low" },
+      { "name": "D4", "description": "Input 4" },
+      { "name": "D3", "description": "Input 3" },
+      { "name": "D2", "description": "Input 2" },
+      { "name": "D1", "description": "Input 1" },
+      { "name": "CLR" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": ["CLR", "CLK", { "value": "G", "negate": true }, "D"]
+        },
+        { "value": "Output", "cells": ["Q"] }
+      ],
+      "data": [
+        ["H", "x", "x", "x", "L"],
+        ["L", "L", "x", "x", "Q0"],
+        ["L", "↑", "H", "x", "Q0"],
+        ["L", "↑", "L", "L", "L"],
+        ["L", "↑", "L", "H", "H"]
+      ]
+    }
+  },
+  {
     "name": "SN74LS245",
     "alias": "BUS TRANSCEIVER",
     "description": "Octal bus transceiver with 3-state outputs",
@@ -559,5 +607,29 @@
         ["H", "A data to B bus"]
       ]
     }
+  },
+  {
+    "name": "SN74LS283",
+    "alias": "ADDER 4",
+    "description": "4-bit binary full adders with fast carry",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls283-sp.pdf",
+    "pins": [
+      { "name" : "Σ2" },
+      { "name" : "B2" },
+      { "name" : "A2" },
+      { "name" : "Σ1" },
+      { "name" : "A1" },
+      { "name" : "B1" },
+      { "name" : "C0", "description": "Carry in" },
+      { "name" : "⏚" },
+      { "name" : "C4", "description": "Carry out" },
+      { "name" : "Σ4" },
+      { "name" : "B4" },
+      { "name" : "A4" },
+      { "name" : "Σ3" },
+      { "name" : "A3" },
+      { "name" : "B3" },
+      { "name" : "Vcc" }
+    ]
   }
 ]
