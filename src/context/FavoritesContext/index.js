@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from 'react';
+import { createContext, useCallback } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import allChips from '../../chips.json';
 
