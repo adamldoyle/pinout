@@ -1,4 +1,5 @@
 import { createContext, useState, useCallback } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import allChips from '../../chips.json';
 
 const FavoritesContext = createContext({
@@ -8,7 +9,7 @@ const FavoritesContext = createContext({
 });
 
 export function FavoritesContextProvider({ children }) {
-  const [favorites, setFavorites] = useState(() =>
+  const [favorites, setFavorites] = useLocalStorage('favorite-chips', () =>
     allChips.reduce((acc, chip) => {
       acc[chip.name] = false;
       return acc;
