@@ -1,10 +1,169 @@
 [
-	{
-		"name": "SN74LS08",
-		"alias": "AND",
-		"description": "Quadruple 2-input positive-AND gates",
-		"pins": [
-			{ "name": "A1" },
+  {
+    "name": "AT28C16",
+    "alias": "16K EEPROM",
+    "description": "16K (2K x 8) Parallel EEPROMs",
+    "datasheet": "http://cva.stanford.edu/classes/cs99s/datasheets/at28c16.pdf",
+    "pins": [
+      { "name": "A7" },
+      { "name": "A6" },
+      { "name": "A5" },
+      { "name": "A4" },
+      { "name": "A3" },
+      { "name": "A2" },
+      { "name": "A1" },
+      { "name": "A0" },
+      { "name": "IO0" },
+      { "name": "IO1" },
+      { "name": "IO2" },
+      { "name": "⏚" },
+      { "name": "IO3" },
+      { "name": "IO4" },
+      { "name": "IO5" },
+      { "name": "IO6" },
+      { "name": "IO7" },
+      { "name": "CE", "negate": true },
+      { "name": "A10" },
+      { "name": "OE", "negate": true },
+      { "name": "WE", "negate": true },
+      { "name": "A9" },
+      { "name": "A8" },
+      { "name": "Vcc" }
+    ]
+  },
+  {
+    "name": "AT28C64",
+    "alias": "64K EEPROM",
+    "description": "64K (8K x 8) Parallel EEPROMs",
+    "datasheet": "http://ww1.microchip.com/downloads/en/devicedoc/doc0001h.pdf",
+    "pins": [
+      {
+        "name": "RDY/NC",
+        "description": "Goes high at completion of write cycle"
+      },
+      { "name": "A12" },
+      { "name": "A7" },
+      { "name": "A6" },
+      { "name": "A5" },
+      { "name": "A4" },
+      { "name": "A3" },
+      { "name": "A2" },
+      { "name": "A1" },
+      { "name": "A0" },
+      { "name": "IO0" },
+      { "name": "IO1" },
+      { "name": "IO2" },
+      { "name": "⏚" },
+      { "name": "IO3" },
+      { "name": "IO4" },
+      { "name": "IO5" },
+      { "name": "IO6" },
+      { "name": "IO7" },
+      { "name": "CE", "negate": true },
+      { "name": "A10" },
+      { "name": "OE", "negate": true },
+      { "name": "A11" },
+      { "name": "A9" },
+      { "name": "A8" },
+      { "name": "NC" },
+      { "name": "WE", "negate": true },
+      { "name": "Vcc" }
+    ]
+  },
+  {
+    "name": "LM555",
+    "alias": "TIMER",
+    "description": "555 timer",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/lm555.pdf",
+    "pins": [
+      { "name": "⏚" },
+      { "name": "TR", "description": "Trigger" },
+      { "name": "Q", "description": "Output" },
+      { "name": "RST", "description": "Reset" },
+      { "name": "CV", "description": "Control voltage" },
+      { "name": "THR", "description": "Threshold" },
+      { "name": "DIS", "description": "Discharge" },
+      { "name": "Vcc" }
+    ]
+  },
+  {
+    "name": "SN74HC595",
+    "alias": "BIT SHIFT",
+    "description": "8-bit shift registers with 3-state output registers",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn74hc595.pdf",
+    "pins": [
+      { "name": "Qb" },
+      { "name": "Qc" },
+      { "name": "Qd" },
+      { "name": "Qe" },
+      { "name": "Qf" },
+      { "name": "Qg" },
+      { "name": "Qh" },
+      { "name": "⏚" },
+      { "name": "Qh'", "description": "Used to chain next register" },
+      { "name": "SRCLR", "negate": true, "description": "Bring low to clear" },
+      {
+        "name": "SRCLK",
+        "description": "Shift in data on clock leading edge"
+      },
+      { "name": "RCLK", "description": "Output data on clock leading edge" },
+      { "name": "OE", "negate": true },
+      { "name": "SER", "description": "Input bit" },
+      { "name": "Qa" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": [
+            "SER",
+            "SRCLK",
+            { "value": "SRCLR", "negate": true },
+            "RCLK",
+            { "value": "OE", "negate": true }
+          ]
+        },
+        { "value": "", "cells": ["Function"] }
+      ],
+      "data": [
+        ["X", "X", "X", "X", "H", "Outputs Qa - Qh are disabled."],
+        ["X", "X", "X", "X", "L", "Outputs Qa - Qh are enabled."],
+        ["X", "X", "L", "X", "X", "Shift register is cleared."],
+        [
+          "L",
+          "↑",
+          "H",
+          "X",
+          "X",
+          "First stage of the shift register goes low. Other stages store the data of previous stage."
+        ],
+        [
+          "H",
+          "↑",
+          "H",
+          "X",
+          "X",
+          "First stage of the shift register goes high. Other stages store the data of previous stage."
+        ],
+        [
+          "X",
+          "X",
+          "X",
+          "↑",
+          "X",
+          "Shift-register data is stored in the storage register."
+        ]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS00",
+    "alias": "NAND",
+    "description": "Quadruple 2-input positive-NAND gates",
+    "datasheet": "https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2007/arb66_ak364/arb66_ak364/sn74ls00.pdf",
+    "pins": [
+      { "name": "A1" },
       { "name": "B1" },
       { "name": "Y1" },
       { "name": "A2" },
@@ -18,6 +177,387 @@
       { "name": "A4" },
       { "name": "B4" },
       { "name": "Vcc" }
-		]
-	}
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A", "B"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 0, 1],
+        [0, 1, 1],
+        [1, 0, 1],
+        [1, 1, 0]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS02",
+    "alias": "NOR",
+    "description": "Quadruple 2-input positive-NOR gates",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls02-sp.pdf",
+    "pins": [
+      { "name": "Y1" },
+      { "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y2" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "⏚" },
+      { "name": "A3" },
+      { "name": "B3" },
+      { "name": "Y3" },
+      { "name": "A4" },
+      { "name": "B4" },
+      { "name": "Y4" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A", "B"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 0, 1],
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 1, 0]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS04",
+    "alias": "INVERTER",
+    "description": "Hex inverter",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ls04.pdf",
+    "pins": [
+      { "name": "A1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "Y2" },
+      { "name": "A3" },
+      { "name": "Y3" },
+      { "name": "⏚" },
+      { "name": "Y4" },
+      { "name": "A4" },
+      { "name": "Y5" },
+      { "name": "A5" },
+      { "name": "Y6" },
+      { "name": "A6" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 1],
+        [1, 0]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS08",
+    "alias": "AND",
+    "description": "Quadruple 2-input positive-AND gates",
+    "datasheet": "https://www.ti.com/lit/ds/sdls033/sdls033.pdf",
+    "pins": [
+      { "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "Y2" },
+      { "name": "⏚" },
+      { "name": "Y3" },
+      { "name": "A3" },
+      { "name": "B3" },
+      { "name": "Y4" },
+      { "name": "A4" },
+      { "name": "B4" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A", "B"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 0, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 1, 1]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS32",
+    "alias": "OR",
+    "description": "Quadruple 2-input positive-OR gates",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls32-sp.pdf",
+    "pins": [
+      { "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "Y2" },
+      { "name": "⏚" },
+      { "name": "Y3" },
+      { "name": "A3" },
+      { "name": "B3" },
+      { "name": "Y4" },
+      { "name": "A4" },
+      { "name": "B4" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A", "B"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 0, 0],
+        [0, 1, 1],
+        [1, 0, 1],
+        [1, 1, 1]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS47",
+    "alias": "7-SEGMENT DECODER",
+    "description": "BCD-to-seven-segment decoders/drivers",
+    "datasheet": "https://www.ti.com/lit/ds/sdls111/sdls111.pdf",
+    "pins": [
+      { "name": "B" },
+      { "name": "C" },
+      { "name": "LT", "negate": true },
+      { "name": "BI/RBO", "negate": true },
+      { "name": "RBI", "negate": true },
+      { "name": "D" },
+      { "name": "A" },
+      { "name": "⏚" },
+      { "name": "e" },
+      { "name": "d" },
+      { "name": "c" },
+      { "name": "b" },
+      { "name": "a" },
+      { "name": "g" },
+      { "name": "f" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [{ "value": "", "cells": ["L", "M", "R"] }],
+      "data": [
+        ["", "a", ""],
+        ["f", "", "b"],
+        ["", "g", ""],
+        ["e", "", "c"],
+        ["", "d", ""]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS86",
+    "alias": "XOR",
+    "description": "Quadruple 2-input exclusive-OR gates",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54s86.pdf",
+    "pins": [
+      { "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "Y2" },
+      { "name": "⏚" },
+      { "name": "Y3" },
+      { "name": "A3" },
+      { "name": "B3" },
+      { "name": "Y4" },
+      { "name": "A4" },
+      { "name": "B4" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": ["A", "B"] },
+        { "value": "Outputs", "cells": ["Y"] }
+      ],
+      "data": [
+        [0, 0, 0],
+        [0, 1, 1],
+        [1, 0, 1],
+        [1, 1, 0]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS90",
+    "alias": "DECADE COUNTER",
+    "description": "Decade counters",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls90.pdf",
+    "pins": [
+      { "name": "CKB", "description": "5 count clock input" },
+      { "name": "R0(1)", "description": "Both R0s high resets to 0" },
+      { "name": "R0(2)", "description": "Both R0s high resets to 0" },
+      { "name": "NC" },
+      { "name": "Vcc" },
+      { "name": "R9(1)", "description": "Both R9s high sets to 9" },
+      { "name": "R9(2)", "description": "Both R9s high sets to 9" },
+      { "name": "Qc" },
+      { "name": "Qb", "description": "LSB when using 5 count" },
+      { "name": "⏚" },
+      {
+        "name": "Qd",
+        "description": "Use for output clock to next chained counter"
+      },
+      {
+        "name": "Qa",
+        "description": "LSB when using 2 or 10 count. Use for output clock to CKB for 10 count"
+      },
+      { "name": "NC" },
+      { "name": "CKA", "description": "2 count clock input" }
+    ]
+  },
+  {
+    "name": "SN74LS107",
+    "alias": "JK FLIP-FLOP",
+    "description": "Dual J-K flip-flops with clear",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ls107a.pdf",
+    "pins": [
+      { "name": "1J" },
+      { "name": "1Q", "negate": true },
+      { "name": "1Q" },
+      { "name": "1K" },
+      { "name": "2Q" },
+      { "name": "2Q", "negate": true },
+      { "name": "⏚" },
+      { "name": "2J" },
+      { "name": "2CLK" },
+      { "name": "2CLR", "negate": true },
+      { "name": "2K" },
+      { "name": "1CLK" },
+      { "name": "1CLR", "negate": true },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": [{ "value": "CLR", "negate": true }, "CLK", "J", "K"]
+        },
+        { "value": "Outputs", "cells": ["Q", { "value": "Q", "negate": true }] }
+      ],
+      "data": [
+        ["L", "x", "x", "x", "L", "H"],
+        ["H", "↓", "L", "L", "Q0", { "value": "Q0", "negate": true }],
+        ["H", "↓", "H", "L", "H", "L"],
+        ["H", "↓", "L", "H", "L", "H"],
+        ["H", "↓", "H", "H", { "value": "Q0", "negate": true }, "Q0"]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS138",
+    "alias": "DEMUX",
+    "description": "3-line to 8-line decoders/demultiplexers",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ls138.pdf",
+    "pins": [
+      { "name": "A" },
+      { "name": "B" },
+      { "name": "C" },
+      { "name": "G2a", "negate": true },
+      { "name": "G2b", "negate": true },
+      { "name": "G1" },
+      { "name": "Y7" },
+      { "name": "⏚" },
+      { "name": "Y6" },
+      { "name": "Y5" },
+      { "name": "Y4" },
+      { "name": "Y3" },
+      { "name": "Y2" },
+      { "name": "Y1" },
+      { "name": "Y0" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": [
+            "G1",
+            { "value": "G2a", "negate": true },
+            { "value": "G2b", "negate": true },
+            "C",
+            "B",
+            "A"
+          ]
+        },
+        {
+          "value": "Outputs",
+          "cells": ["Y0", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6", "Y7"]
+        }
+      ],
+      "data": [
+        ["x", "H", "x", "x", "x", "x", "H", "H", "H", "H", "H", "H", "H", "H"],
+        ["x", "x", "H", "x", "x", "x", "H", "H", "H", "H", "H", "H", "H", "H"],
+        ["L", "x", "x", "x", "x", "x", "H", "H", "H", "H", "H", "H", "H", "H"],
+
+        ["H", "L", "L", "L", "L", "L", "L", "H", "H", "H", "H", "H", "H", "H"],
+        ["H", "L", "L", "L", "L", "H", "H", "L", "H", "H", "H", "H", "H", "H"],
+        ["H", "L", "L", "L", "H", "L", "H", "H", "L", "H", "H", "H", "H", "H"],
+        ["H", "L", "L", "L", "H", "H", "H", "H", "H", "L", "H", "H", "H", "H"],
+        ["H", "L", "L", "H", "L", "L", "H", "H", "H", "H", "L", "H", "H", "H"],
+        ["H", "L", "L", "H", "L", "H", "H", "H", "H", "H", "H", "L", "H", "H"],
+        ["H", "L", "L", "H", "H", "L", "H", "H", "H", "H", "H", "H", "L", "H"],
+        ["H", "L", "L", "H", "H", "H", "H", "H", "H", "H", "H", "H", "H", "L"]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS245",
+    "alias": "BUS TRANSCEIVER",
+    "description": "Octal bus transceiver with 3-state outputs",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls245-sp.pdf",
+    "pins": [
+      {
+        "name": "DIR",
+        "description": "Controls signal direction; Low = Bx to Ax, High = Ax to Bx"
+      },
+      { "name": "A1" },
+      { "name": "A2" },
+      { "name": "A3" },
+      { "name": "A4" },
+      { "name": "A5" },
+      { "name": "A6" },
+      { "name": "A7" },
+      { "name": "A8" },
+      { "name": "⏚" },
+      { "name": "B8" },
+      { "name": "B7" },
+      { "name": "B6" },
+      { "name": "B5" },
+      { "name": "B4" },
+      { "name": "B3" },
+      { "name": "B2" },
+      { "name": "B1" },
+      { "name": "OE", "negate": true },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": ["DIR"]
+        },
+        { "value": "", "cells": ["Operation"] }
+      ],
+      "data": [
+        ["L", "B data to A bus"],
+        ["H", "A data to B bus"]
+      ]
+    }
+  }
 ]

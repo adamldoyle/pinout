@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 
 const chipBorder = '1px solid black';
@@ -11,7 +12,7 @@ const ChipPositions = {
 
 const useStyles = makeStyles({
   pinMiddle: {
-    width: '40px',
+    width: '20px',
   },
   pinTop: {
     borderTop: chipBorder,
@@ -53,12 +54,36 @@ const useStyles = makeStyles({
   },
 });
 
+function buildPinName(pin, position) {
+  let name = pin.name;
+  if (pin.description) {
+    if (position === ChipPositions.LEFT) {
+      name = `•${name}`;
+    } else {
+      name = `${name}•`;
+    }
+  }
+
+  const nameElm = !pin.negate ? (
+    <span>{name}</span>
+  ) : (
+    <span style={{ textDecoration: 'overline' }}>{name}</span>
+  );
+  return pin.description ? (
+    <Tooltip title={pin.description} aria-label="info">
+      {nameElm}
+    </Tooltip>
+  ) : (
+    nameElm
+  );
+}
+
 export default function PinOut({ pins }) {
   const classes = useStyles();
 
   const height = pins.length / 2;
   const leftPins = pins.slice(0, height);
-  const rightPins = pins.slice(height);
+  const rightPins = pins.slice(height).reverse();
 
   const chipBorderClasses = (index, height, position) => {
     const borderClasses = [];
@@ -89,7 +114,7 @@ export default function PinOut({ pins }) {
         {leftPins.map((leftPin, pinIndex) => (
           <tr key={pinIndex}>
             <td className={clsx(classes.pinName, classes.leftPinName)}>
-              {leftPin.name} &mdash;
+              {buildPinName(leftPin, ChipPositions.LEFT)} &mdash;
             </td>
             <td
               className={clsx(
@@ -114,7 +139,7 @@ export default function PinOut({ pins }) {
               {pins.length - pinIndex}
             </td>
             <td className={clsx(classes.pinName, classes.rightPinName)}>
-              &mdash; {rightPins[pinIndex].name}
+              &mdash; {buildPinName(rightPins[pinIndex], ChipPositions.RIGHT)}
             </td>
           </tr>
         ))}
