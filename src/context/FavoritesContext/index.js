@@ -21,7 +21,7 @@ export function FavoritesContextProvider({ children }) {
       ...prev,
       [chipName]: !prev[chipName],
     }));
-  }, []);
+  }, [setFavorites]);
 
   const isFavorite = useCallback((chipName) => favorites[chipName], [
     favorites,
