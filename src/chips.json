@@ -87,6 +87,41 @@
     ]
   },
   {
+    "name": "SN74189",
+    "alias": "64-BIT RAM",
+    "description": "64-bit random access memory with 3-state outputs",
+    "datasheet": "http://ltodi.est.ips.pt/lab-dee-et/datasheets/TTL/74189.pdf",
+    "pins": [
+      { "name": "A0" },
+      { "name": "CS", "negate": true, "description": "Enable chip" },
+      { "name": "WE", "negate": true, "description": "Write enable - copy from D to memory" },
+      { "name": "D0" },
+      { "name": "O0", "negate": true },
+      { "name": "D1" },
+      { "name": "O1", "negate": true },
+      { "name": "⏚" },
+      { "name": "O2", "negate": true },
+      { "name": "D2" },
+      { "name": "O3", "negate": true },
+      { "name": "D3" },
+      { "name": "A3" },
+      { "name": "A2" },
+      { "name": "A1" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        { "value": "Inputs", "cells": [{ "value": "CS", "negate": true }, { "value": "WE", "negate": true }] },
+        { "value": "", "cells": ["Operation"] }
+      ],
+      "data": [
+        ["L", "L", "Write"],
+        ["L", "H", "Read"],
+        ["H", "x", "inhibit"]
+      ]
+    }
+  },
+  {
     "name": "SN74HC595",
     "alias": "BIT SHIFT",
     "description": "8-bit shift registers with 3-state output registers",
@@ -515,6 +550,70 @@
         ["H", "L", "L", "H", "H", "H", "H", "H", "H", "H", "H", "H", "H", "L"]
       ]
     }
+  },
+  {
+    "name": "SN74LS157",
+    "alias": "MULTIPLEXER",
+    "description": "Quardruple 2-line to 1-line data selectors/multiplexers",
+    "datasheet": "https://www.ti.com/lit/ds/sdls058a/sdls058a.pdf",
+    "pins": [
+      { "name": "A̅/B", "description": "A lines are output when low, B when high" },
+      { "name": "A1" },
+      { "name": "B1" },
+      { "name": "Y1" },
+      { "name": "A2" },
+      { "name": "B2" },
+      { "name": "Y2" },
+      { "name": "⏚" },
+      { "name": "Y3" },
+      { "name": "B3" },
+      { "name": "A3" },
+      { "name": "Y4" },
+      { "name": "B4" },
+      { "name": "A4" },
+      { "name": "E", "negate": true, "description": "Enable. Output always low when high" },
+      { "name": "Vcc" }
+    ],
+    "truthTable": {
+      "headers": [
+        {
+          "value": "Inputs",
+          "cells": [{ "value": "E", "negate": true }, "A̅/B", "A", "B"]
+        },
+        { "value": "Output", "cells": ["Y"] }
+      ],
+      "data": [
+        ["H", "x", "x", "x", "L"],
+        ["L", "L", "L", "x", "L"],
+        ["L", "L", "H", "x", "H"],
+        ["L", "H", "x", "L", "L"],
+        ["L", "H", "x", "H", "H"]
+      ]
+    }
+  },
+  {
+    "name": "SN74LS161",
+    "alias": "4-BIT COUNTER",
+    "description": "Synchronous 4-bit counter with direct clear",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/sn54ls161a-sp.pdf",
+    "pins": [
+      { "name": "CLR", "negate": true, "description": "When low, count reset to 0" },
+      { "name": "CLK", "description": "Output changes on leading edge" },
+      { "name": "A" },
+      { "name": "B" },
+      { "name": "C" },
+      { "name": "D" },
+      { "name": "ENP", "description": "Enable along with ENT" },
+      { "name": "⏚" },
+      { "name": "LOAD", "negate": true, "description": "When low, count is set to value from ABCD" },
+      { "name": "ENT", "description": "Enable along with ENP, can be tied to prior chip RCO" },
+      { "name": "Qd" },
+      { "name": "Qc" },
+      { "name": "Qb" },
+      { "name": "Qa" },
+      { "name": "RCO", "description": "Carry to next chip's ENT" },
+      { "name": "Vcc" }
+    ]
   },
   {
     "name": "SN74LS173",
