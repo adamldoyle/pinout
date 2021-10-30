@@ -4,4 +4,4 @@ Reference website for integrated circuit chips with pin layout, truth tables of 
 
 ## Example
 
-http://pinout.cf
+https://pinout.netlify.app/
