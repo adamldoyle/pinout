@@ -70,6 +70,42 @@
       { "name": "Vcc" }
     ]
   },
+    {
+    "name": "AT28C256",
+    "alias": "256K EEPROM",
+    "description": "256K (32K x 8) Parallel EEPROMs",
+    "datasheet": "https://ww1.microchip.com/downloads/en/DeviceDoc/doc0006.pdf",
+    "pins": [
+      { "name": "A14" },
+      { "name": "A12" },
+      { "name": "A7" },
+      { "name": "A6" },
+      { "name": "A5" },
+      { "name": "A4" },
+      { "name": "A3" },
+      { "name": "A2" },
+      { "name": "A1" },
+      { "name": "A0" },
+      { "name": "IO0" },
+      { "name": "IO1" },
+      { "name": "IO2" },
+      { "name": "⏚" },
+      { "name": "IO3" },
+      { "name": "IO4" },
+      { "name": "IO5" },
+      { "name": "IO6" },
+      { "name": "IO7" },
+      { "name": "CE", "negate": true },
+      { "name": "A10" },
+      { "name": "OE", "negate": true },
+      { "name": "A11" },
+      { "name": "A9" },
+      { "name": "A8" },
+      { "name": "A13" },
+      { "name": "WE", "negate": true },
+      { "name": "Vcc" }
+    ]
+  },
   {
     "name": "LM555",
     "alias": "TIMER",
