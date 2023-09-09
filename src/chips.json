@@ -765,12 +765,12 @@
     "description": "8-bit Microprocessor",
     "datasheet": "https://eater.net/datasheets/w65c02s.pdf",
     "pins": [
-      { "name": "VPB", "description": "Vector pull" },
+      { "name": "VPB", "negate": true, "description": "Vector pull" },
       { "name": "RDY", "description": "Ready" },
       { "name": "PHI1O", "description": "Phase 1 out clock" },
-      { "name": "IRQB", "description": "Interrupt request" },
-      { "name": "MLB", "description": "Memory lock" },
-      { "name": "NMIB", "description": "Non-maskable interrupt" },
+      { "name": "IRQB", "negate": true, "description": "Interrupt request" },
+      { "name": "MLB", "negate": true, "description": "Memory lock" },
+      { "name": "NMIB", "negate": true, "description": "Non-maskable interrupt" },
       { "name": "SYNC", "description": "Synchronize" },
       { "name": "VDD", "description": "Positive power supply" },
       { "name": "A0" },
@@ -798,13 +798,13 @@
       { "name": "D2" },
       { "name": "D1" },
       { "name": "D0" },
-      { "name": "RWB", "description": "Read/write" },
+      { "name": "RW̅B", "description": "Read (high) / write (low)" },
       { "name": "NC", "description": "No connection" },
       { "name": "BE", "description": "Bus enable" },
       { "name": "PHI2", "description": "Phase 2 in clock" },
-      { "name": "SOB", "description": "Set overflow" },
+      { "name": "SOB", "negate": true, "description": "Set overflow" },
       { "name": "PHI2O", "description": "Phase 2 out clock" },
-      { "name": "RESB", "description": "Reset" }
+      { "name": "RESB", "negate": true, "description": "Reset" }
     ]
   }
 ]
